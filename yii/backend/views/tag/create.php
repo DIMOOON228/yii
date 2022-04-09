@@ -3,15 +3,15 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\Blog */
+/* @var $model common\models\Tag */
 
-$this->title = 'Create Blog';
-$this->params['breadcrumbs'][] = ['label' => 'Blogs', 'url' => ['index']];
+$this->title = 'Create Tag';
+$this->params['breadcrumbs'][] = ['label' => 'Tags', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="blog-create">
+<div class="tag-create">
 
-    
+
 
     <?= $this->render('_form', [
         'model' => $model,

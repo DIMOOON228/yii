@@ -15,8 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="blog-index">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
     <p>
         <?= Html::a('Create Blog', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
@@ -29,13 +27,23 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'title',
-            'text:ntext',
-            'url:url',
-            'status_id',
+            'url:raw',
+            [
+                'attribute' =>'status_id',
+                'filter'=>['Off','On'],
+                'value'=>function($data)
+                {
+                    return !$data->status_id ? '<span class="text-danger">Off<span>':'<span class="text-success">On<span>';
+                } ,
+                'format'=>'html',
+            ],
             'sort',
+           [
+                'attribute'=>'tags',
+                'value'=>'tagsAsSting',
+           ],
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Blog $model, $key, $index, $column) {

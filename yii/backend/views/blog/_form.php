@@ -1,5 +1,6 @@
 <?php
-
+use common\models\Tag;
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use vova07\imperavi\Widget;
@@ -32,6 +33,16 @@ use vova07\imperavi\Widget;
 
     <?= $form->field($model, 'sort')->textInput() ?>
 
+    <?= $form ->field($model ,'tags_array')->widget(\kartik\select2\Select2::classname(), [
+     'data' => ArrayHelper::map(Tag::find()->all(),'id','name'),
+     'language' => 'ru' ,
+     'options' => [ 'placeholder' => 'Выбрать tag','multiple' => true ],
+     'pluginOptions' => [
+        'allowClear' => true,
+        'tags' => true,
+        'maximumInputLength' => 10
+        ],    
+]); ?>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
@@ -39,3 +50,4 @@ use vova07\imperavi\Widget;
     <?php ActiveForm::end(); ?>
 
 </div>
+<!-- <pre><?php print_r(ArrayHelper::map($model->getTags()->asArray()->all(),'id','name')) ?></pre> -->

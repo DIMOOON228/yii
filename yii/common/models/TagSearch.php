@@ -4,12 +4,12 @@ namespace common\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use common\models\Blog;
+use common\models\Tag;
 
 /**
- * BlogSearch represents the model behind the search form of `common\models\Blog`.
+ * TagSearch represents the model behind the search form of `common\models\Tag`.
  */
-class BlogSearch extends Blog
+class TagSearch extends Tag
 {
     /**
      * {@inheritdoc}
@@ -17,8 +17,8 @@ class BlogSearch extends Blog
     public function rules()
     {
         return [
-            [['id', 'status_id', 'sort'], 'integer'],
-            [['title', 'text', 'url'], 'safe'],
+            [['id'], 'integer'],
+            [['name'], 'safe'],
         ];
     }
 
@@ -40,20 +40,12 @@ class BlogSearch extends Blog
      */
     public function search($params)
     {
-        $query = Blog::find();
+        $query = Tag::find();
 
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [
-                 'pageSize' => 10,
-              ],
-             'sort'=>[
-                 'defaultOrder'=>[
-                     'id'=>SORT_DESC
-                 ]
-             ] 
         ]);
 
         $this->load($params);
@@ -67,13 +59,9 @@ class BlogSearch extends Blog
         // grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
-            'status_id' => $this->status_id,
-            'sort' => $this->sort,
         ]);
 
-        $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'text', $this->text])
-            ->andFilterWhere(['like', 'url', $this->url]);
+        $query->andFilterWhere(['like', 'name', $this->name]);
 
         return $dataProvider;
     }

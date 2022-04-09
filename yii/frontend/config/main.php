@@ -9,12 +9,21 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => ['log','debug','gii'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'gii'=>[
+            'class'=>'yii\gii\Module'
+        ],
+        'debug'=>[
+            'class'=>'yii\debug\Module'
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
         ],
+        
         'user' => [
             'identityClass' => 'common\models\User',
             'enableAutoLogin' => true,

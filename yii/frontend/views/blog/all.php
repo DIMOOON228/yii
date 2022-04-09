@@ -3,21 +3,20 @@
 /** @var yii\web\View $this */
 
 use yii\bootstrap4\Html;
+use yii\widgets\ListView;
 
-
+$blog =$dataProvider->getModels();
 $this->title = 'Blog';
 ?>
     <div class="body-content">
 
         <div class="row">
-            <?php foreach($blogs as $one): ?>
-
-            <div class="col-lg-12">
-                <h2><?= $one->title ?></h2>
-                <?= $one->text ?>
-                <?= Html::a('подробнее',['blog/one','url'=>$one->url])?>
-            </div>
-            <?php  endforeach; ?>
+        <?= 
+            ListView::widget([
+            'dataProvider' => $dataProvider,
+            'itemView' => '_one',
+        ]);
+        ?>
         </div>
 
     </div>
