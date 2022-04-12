@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tag-index">
 
-
+  
 
     <p>
         <?= Html::a('Create Tag', ['create'], ['class' => 'btn btn-success']) ?>

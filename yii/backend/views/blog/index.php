@@ -32,18 +32,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'url:raw',
             [
                 'attribute' =>'status_id',
-                'filter'=>['Off','On'],
-                'value'=>function($data)
-                {
-                    return !$data->status_id ? '<span class="text-danger">Off<span>':'<span class="text-success">On<span>';
-                } ,
+                'filter'=>Blog::STATUS_LIST ,
+                'value'=>'statusName',
                 'format'=>'html',
+               
             ],
             'sort',
            [
                 'attribute'=>'tags',
                 'value'=>'tagsAsSting',
            ],
+           'data_create:datetime',
+           'data_update:datetime',
             [
                 'class' => ActionColumn::className(),
                 'urlCreator' => function ($action, Blog $model, $key, $index, $column) {

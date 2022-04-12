@@ -1,7 +1,7 @@
 <?php
 
 /** @var yii\web\View $this */
-
+use yii\bootstrap\Html;
 $this->title = 'My Yii Application';
 ?>
 <div class="site-index">
@@ -21,7 +21,8 @@ $this->title = 'My Yii Application';
 
             <div class="col-lg-4">
                 <h2><?= $one->title ?></h2>
-                <!-- <?= $one->text ?> -->
+                 <!-- <?= $one->text ?>  -->
+                 <?= Html::a('подробнее',['blog/one','url'=>$model->url],['class'=> "btn btn-success"]) ?><hr>
             </div>
 
             <?php  endforeach; ?>

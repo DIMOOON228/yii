@@ -31,15 +31,12 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'id',
             'title',
-            'text:ntext',
+            'text:html',
             'url:url',
-             [  'attribute'=>'status_id',
-                'value' => !$model->status_id ? '<span class="text-danger">off</span>' : '<span class="text-success">on</span>',
-                'format'=> 'html'
-            ],
+            'status_id',
             'sort',
-            'author.useranme',
-            'author.eamil',
+            'author.username',
+            'author.email',
             'tagsAsSting',
         ],
     ]) ?>

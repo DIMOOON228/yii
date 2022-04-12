@@ -1,7 +1,6 @@
 <?php
 
 namespace backend\controllers;
-
 use common\models\Blog;
 use common\models\BlogSearch;
 use yii\web\Controller;

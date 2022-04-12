@@ -13,20 +13,21 @@ return [
     'bootstrap' => ['log','gii','debug'],
     'modules' => [
         'gii'=>[
-            'class'=>'yii\gii\Module'
+            'class'=>'yii\gii\Module',
+            'generators' => [ // здесь
+                'crud' => [ // название генератора
+                    'class' => 'yii\gii\generators\crud\Generator', // класс генератора
+                    'templates' => [ // настройки сторонних шаблонов
+                        'myGii' => '@common/generators/crud/default', // имя_шаблона => путь_к_шаблону
+                    ]
+                ]
+            ]
         ],
         'debug'=>[
             'class'=>'yii\debug\Module'
         ],
     ],
     'components' => [
-        'view' => [
-            'theme' => [
-                'pathMap' => [
-                   '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
-                ],
-            ],
-       ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
@@ -61,5 +62,26 @@ return [
         ],
         
     ],
+    // 'controllerMap' => [
+    //     'elfinder' => [
+	// 		'class' => 'mihaildev\elfinder\PathController',
+	// 		'access' => ['?'],
+	// 		'root' => [
+    //             'baseUrl'=>'/z',
+    //             //'basePath'=>'@webroot',
+	// 			'path' => 'uploads/global',
+	// 			'name' => 'Global'
+	// 		],
+	// 		// 'watermark' => [
+	// 		// 			'source'         => __DIR__.'/logo.png', // Path to Water mark image
+	// 		// 			 'marginRight'    => 5,          // Margin right pixel
+	// 		// 			 'marginBottom'   => 5,          // Margin bottom pixel
+	// 		// 			 'quality'        => 95,         // JPEG image save quality
+	// 		// 			 'transparency'   => 70,         // Water mark image transparency ( other than PNG )
+	// 		// 			 'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP, // Target image formats ( bit-field )
+	// 		// 			 'targetMinPixel' => 200         // Target image minimum pixel size
+	// 		// ]
+	// 	]
+    // ],
     'params' => $params,
 ];
